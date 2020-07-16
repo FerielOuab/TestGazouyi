@@ -1,0 +1,19 @@
+<ion-header [translucent]="true">
+  <ion-toolbar >
+    <ion-title>
+      Application Feriel
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div id="container">
+    <p align="center">Vous êtes connecté !</p>
+    <ion-button (click)="selectImage()" expand="full">Ajouter image</ion-button>
+    <div *ngFor="let image of listePhotos">
+      <img [src]="image" alt="error" align="center">
+      <br>
+    </div>
+    <ion-button [routerLink]="['']" expand="full">Se déconnecter</ion-button>
+  </div>
+</ion-content>
