@@ -24,6 +24,7 @@
       </ion-list>
       <p *ngIf="!champObligatoire">Les champs (*) sont obligatoires</p>
       <p *ngIf="nomExistant">Ce username existe déjà, veuillez en choisir un autre.</p>
+      <p *ngIf="!regEX">Le format du mail n'est pas correct</p>
       <ion-button type="submit" expand="full">Create account</ion-button>
     </form>
   </div>

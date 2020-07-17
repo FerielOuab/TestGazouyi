@@ -23,6 +23,7 @@ import {WebView} from '@ionic-native/ionic-webview/ngx';
     SplashScreen,
     Camera,
     WebView,
+    FormsModule,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {LoginService} from '../services/login.service';
 import {Location} from '@angular/common';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-create-account',
@@ -13,8 +14,10 @@ export class CreateAccountComponent implements OnInit {
   password: string;
   champObligatoire = true;
   nomExistant = false;
+  regEX = true;
   constructor(private loginService: LoginService,
-              private location: Location) {
+              private location: Location,
+              private control: FormControl) {
 
   }
 
@@ -22,29 +25,38 @@ export class CreateAccountComponent implements OnInit {
 
   createAccount(){
     if(this.username!=null && this.password !=null) {
-      if(this.loginService.map.has(this.username))
-      {
-        // this.username = null;
-        // this.password = null;
-        this.champObligatoire = true;
-        this.nomExistant = true;
-        return false;
-      }
-      else{
-        if(this.password !='')
+      let re =  /^[a-zA-Z0-9._]+[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+      let result = re.test(this.username);
+      if(result){
+        if(this.loginService.map.has(this.username))
         {
-          this.nomExistant = false;
-          this.loginService.addUser(this.username, this.password)
-          console.log("USERNAME + MDP: " + this.username + "/" + this.password)
-          return true;
+          // this.username = null;
+          // this.password = null;
+          this.champObligatoire = true;
+          this.nomExistant = true;
+          return false;
         }
         else{
-          this.nomExistant = false;
-          this.champObligatoire = false;
-          console.log("chaine vide");
+          if(this.password !='')
+          {
+            this.nomExistant = false;
+            this.loginService.addUser(this.username, this.password)
+            console.log("USERNAME + MDP: " + this.username + "/" + this.password)
+            return true;
+          }
+          else{
+            this.nomExistant = false;
+            this.champObligatoire = false;
+            console.log("chaine vide");
 
+          }
         }
+
       }
+      else {
+        this.regEX = false;
+      }
+
     }
     else {
       console.log("Username ou password null")
