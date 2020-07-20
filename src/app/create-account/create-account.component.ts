@@ -30,8 +30,7 @@ export class CreateAccountComponent implements OnInit {
       if(result){
         if(this.loginService.map.has(this.username))
         {
-          // this.username = null;
-          // this.password = null;
+
           this.champObligatoire = true;
           this.nomExistant = true;
           return false;
