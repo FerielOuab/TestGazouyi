@@ -18,9 +18,10 @@
         </ion-item>
       </ion-list>
       <p id="champ" *ngIf="!champObligatoire">Les champs (*) sont obligatoires</p>
+      <p id="champ1" *ngIf="!compteExists">Ce compte n'existe pas!</p>
       <ion-button type="submit" expand="full">Log in</ion-button>
     </form>
     <p align="center">OR</p>
-    <ion-button [routerLink]="[ 'CreateAccount']" expand="full">Create account</ion-button>
+    <ion-button [routerLink]="[ 'CreateAccount']" expand="full" (click)="update()">Create account</ion-button>
   </div>
 </ion-content>
